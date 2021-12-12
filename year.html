@@ -1,15 +1,6 @@
 ﻿<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width">
 
-<h1>日本の季節性インフルエンザの患者報告数</h1>
 <canvas id="chart"></canvas>
-DATA: <a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou01/houdou.html>インフルエンザに関する報道発表資料 ｜厚生労働省</a><br>
-APP: <a href=https://fukuno.jig.jp/3425>Code for FUKUI</a> <a href=https://github.com/code4fukui/influenza/>src on GitHub</a><br>
-
-<style>
-body {
-  text-align: center;
-}
-</style>
 
 <script type="module">
 import { CBOR } from "https://js.sabae.cc/CBOR.js";
@@ -22,36 +13,35 @@ onload = async () => {
 
   const date = [];
   const datasets = [];
-  const hue = 300;
-  const dset = {
-    //label: data[0][j],
-    type: "line",
-    data: [],
-    fill: false,
-    lineTension: 0,
-    yAxisID: "yr",
-    borderColor: `hsl(${hue}, ${90}%, 40%)`,
-  };
-  datasets.push(dset);
-
-  const fix = (n) => {
-    if (n == "" || n == "-") {
-      return null;
-    }
-    /*
-    if (n == "-") {
-      return 0;
-    }
-    */
-    return n.replace(/,/g, "");
-  };
-
   for (let j = 1; j < data[0].length; j++) {
-    const year = data[0][j];
-    for (let i = 1; i < data.length; i++) {
-      const d = data[i];
-      date.push(year + " " + d[0]);
-      dset.data.push(fix(d[j]));
+    const hue = 30;
+    const dset = {
+      label: data[0][j],
+      type: "line",
+      data: [],
+      fill: false,
+      lineTension: 0,
+      yAxisID: "yr",
+      borderColor: `hsl(${hue}, ${j * 20}%, 50%)`,
+    };
+    datasets.push(dset);
+  }
+  for (let i = 1; i < data.length; i++) {
+    const d = data[i];
+    date.push(d[0]);
+    const fix = (n) => {
+      if (n == "" || n == "-") {
+        return null;
+      }
+      /*
+      if (n == "-") {
+        return 0;
+      }
+      */
+      return n.replace(/,/g, "");
+    };
+    for (let j = 1; j < d.length; j++) {
+      datasets[j - 1].data.push(fix(d[j]));
     }
   }
   const config = {
@@ -66,7 +56,7 @@ onload = async () => {
       */
     },
     options: {
-      //title: { display: true, text: "日本のインフルエンザ報告" },
+      title: { display: true, text: "日本のインフルエンザ報告" },
       scales: {
         xAxes: [{ scaleLabel: { display: true, labelString: "週" } }],
         yAxes: [
@@ -74,7 +64,7 @@ onload = async () => {
           //{ id: "yl", position: "left", scaleLabel: { display: true, labelString: "PCR 検査陽性者数" }, ticks: { beginAtZero: true } },
         ],
       },
-      legend: { display: false }
+      legend: { display: true }
     }
   };
   new Chart.Chart(chart, config);
