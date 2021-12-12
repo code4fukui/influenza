@@ -1,6 +1,12 @@
 ﻿<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width">
 
+<title>日本の季節性インフルエンザの患者報告数（年ごと集計）</title>
+</head><body>
+
+<h1>日本の季節性インフルエンザの患者報告数（年ごと集計）</h1>
 <canvas id="chart"></canvas>
+DATA: オープンデータ <a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou01/houdou.html>インフルエンザに関する報道発表資料 ｜厚生労働省</a><br>
+APP: <a href=https://fukuno.jig.jp/3425>Code for FUKUI</a> <a href=https://github.com/code4fukui/influenza/>src on GitHub</a><br>
 
 <script type="module">
 import { CBOR } from "https://js.sabae.cc/CBOR.js";
@@ -56,7 +62,7 @@ onload = async () => {
       */
     },
     options: {
-      title: { display: true, text: "日本のインフルエンザ報告" },
+      //title: { display: true, text: "日本のインフルエンザ報告" },
       scales: {
         xAxes: [{ scaleLabel: { display: true, labelString: "週" } }],
         yAxes: [
