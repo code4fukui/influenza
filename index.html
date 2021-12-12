@@ -12,12 +12,14 @@ body {
 </style>
 
 <script type="module">
-import { CBOR } from "https://js.sabae.cc/CBOR.js";
+import { CSV } from "https://js.sabae.cc/CSV.js";
+//import { CBOR } from "https://js.sabae.cc/CBOR.js";
 import { fetchBin } from "https://js.sabae.cc/fetchBin.js";
 import Chart from "https://js.sabae.cc/Chart.mjs";
 
 onload = async () => {
-  const data = await CBOR.decode(await fetchBin("https://code4fukui.github.io/influenza/influenza_mhlw_go_jp.csv.cbor"));
+  //const data = await CBOR.decode(await fetchBin("https://code4fukui.github.io/influenza/influenza_mhlw_go_jp.csv.cbor"));
+  const data = await CSV.fetch("https://code4fukui.github.io/influenza/influenza_mhlw_go_jp.csv");
   console.log(data);
 
   const date = [];
@@ -33,18 +35,6 @@ onload = async () => {
     borderColor: `hsl(${hue}, ${90}%, 40%)`,
   };
   datasets.push(dset);
-
-  const fix = (n) => {
-    if (n == "" || n == "-") {
-      return null;
-    }
-    /*
-    if (n == "-") {
-      return 0;
-    }
-    */
-    return n.replace(/,/g, "");
-  };
 
   for (let j = 1; j < data[0].length; j++) {
     const year = data[0][j];
