@@ -41,7 +41,7 @@ onload = async () => {
     for (let i = 1; i < data.length; i++) {
       const d = data[i];
       date.push(year + " " + d[0]);
-      dset.data.push(fix(d[j]));
+      dset.data.push(d[j]);
     }
   }
   const config = {
