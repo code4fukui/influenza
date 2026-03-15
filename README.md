@@ -1,5 +1,7 @@
 # influenza
 
+> 日本語のREADMEはこちらです: [README.ja.md](README.ja.md)
+
 This project visualizes the number of reported influenza patients in Japan over the years.
 
 ## Demo
