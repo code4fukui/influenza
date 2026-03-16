@@ -17,4 +17,4 @@ The data is from the open data source:
 - [Influenza-related press release materials | Ministry of Health, Labour and Welfare](https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou01/houdou.html)
 
 ## License
-MIT License
+MIT License — see [LICENSE](LICENSE).
